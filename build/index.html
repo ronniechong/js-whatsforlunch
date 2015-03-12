@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>What's for lunch?</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+    <div id="container" class="container">
+      <div id="debug"></div>
+      <div id="lunchList"></div>
+      <div class="input-container">
+        <button id="button" name="submit">Submit</button>
+        <button id="replay" name="replay">Pick again</button>
+      </div>
+    </div>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript">
+      var settings = {
+      		allowAudio:true
+      	},
+      	lunchTime = new LunchTime(settings);
+    </script>
+  </body>
+</html>
