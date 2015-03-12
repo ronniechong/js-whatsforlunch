@@ -4,8 +4,12 @@ function LunchTime(newSettings) {
 	this.items 		= ["Centro", "Kebab", "Corlam", "Pi", "Kmart","Burma","Macacs","Ikea"],
 	this.mode 		= ["start","disabled","outcome","loading"],
 	this.settings	= {
-						containerID		: "container",	
-						listID			: "lunchList",			//ID
+						mainContainer	: "container",	
+						listContainer	: {
+											idName 			: "lunchList",
+											classNormal		: "item",
+											classSelected	: "selected"
+										  },
 						timer			: {
 											interval 	: 150,
 											increment	: 250,
@@ -47,7 +51,7 @@ function LunchTime(newSettings) {
 
 		//Build markup
 		document
-			.getElementById(this.settings.listID)
+			.getElementById(this.settings.listContainer.idName)
 			.appendChild(
 				this.buildList(
 					(this.settings.randomise)? this.randomiseItems(this.items): this.items
@@ -66,8 +70,9 @@ function LunchTime(newSettings) {
 			}
 		}
 		
-		//Init trigger
+		//Init triggers
 		document.getElementById("button").addEventListener("click", this.buttonStart, false);
+		document.getElementById("replay").addEventListener("click", this.reset, false);
 
 	}
 
@@ -78,12 +83,14 @@ function LunchTime(newSettings) {
 		this.intCounter = setTimeout(function(){
 						
 			var rand 			= Math.floor(Math.random() * (_this.items.length - 1  + 1)),
-				listContainer 	= document.getElementById(_this.settings.listID),
+				classNormal		= _this.settings.listContainer.classNormal,
+				classSelected	= _this.settings.listContainer.classSelected,
+				listContainer 	= document.getElementById(_this.settings.listContainer.idName),
 				list 			= listContainer.getElementsByTagName("li"),
 				className;
 
 			for (var i=0; i < list.length; i++){
-				className =  (rand === i)? "item selected":"item";
+				className =  (rand === i)? classNormal.concat(" ", classSelected):classNormal;
 				list[i].className=className;	
 			};
 			
@@ -131,7 +138,7 @@ function LunchTime(newSettings) {
 		for(var i = 0; i < arr.length; i++) {
 	        var item = document.createElement("li");
 	        item.appendChild(document.createTextNode(arr[i]));
-	        item.className = "item";
+	        item.className = _this.settings.listContainer.classNormal;
 	        list.appendChild(item);
 	    }
 
@@ -140,7 +147,7 @@ function LunchTime(newSettings) {
 
 	this.setMode = function (mode){
 
-		var container = document.getElementById(this.settings.containerID);
+		var container = document.getElementById(this.settings.mainContainer);
 
 		container.className =  "container " + mode;
 
@@ -170,6 +177,7 @@ function LunchTime(newSettings) {
 
 	this.reset = function(){
 		//reset
+		console.log('RESET');
 	}
 
 	this.audioTrack = function (name,src,volume,loop) {
