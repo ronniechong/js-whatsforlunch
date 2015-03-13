@@ -1,9 +1,22 @@
-//Main
+//Imports
+@import url("//fonts.googleapis.com/css?family=Oswald");
 @import "compass";
 @import "compass/reset";
+@import "mixin";
 
+//Variables
+$item-borderColor 		: #333;
+$item-bgColor 			: #333;
+$item-bgColor--selected	: #666;
+
+$fnt-clr				: #222;
+$fnt-clr--selected		: #fff;
+
+//General
 html, body{
-	
+	font-family:"Oswald", sans-serif;
+	font-size: 16px;
+	color:$fnt-clr;
 }
 body{
 
@@ -11,3 +24,37 @@ body{
 .container{
 	
 }
+
+.listContainer{
+	ul{
+		text-align:center;
+		font-size:1.5rem;
+	}
+	.item{
+		display:inline-block;
+		width:50%;
+		background-color:$item-bgColor--selected;
+		@include transitions (background-color 0.3s);
+		@include mediaquery(md){
+			width:33.3333333%;
+		}
+		@include mediaquery(lg){
+			width:25%;
+		}
+		&.selected{
+			background-color:$item-bgColor;
+			color:$fnt-clr--selected;
+		}
+		span{
+			display: block;
+			border:1px solid $item-borderColor;
+			padding:5vh 0;
+			@include transitions (all 0.3s);
+			@include mediaquery(md){
+				padding:10vh 0;
+			}
+		}
+	}
+}
+
+//Modes

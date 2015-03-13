@@ -1,0 +1,14 @@
+@mixin mediaquery($breakpoint) {
+	@if $breakpoint == sm {
+		@media all and (min-width: 480px) { @content; }
+	} @else if $breakpoint == md {
+		@media all and (min-width: 768px) { @content; }
+	} @else if $breakpoint == lg {
+		@media all and (min-width: 1024px) { @content; }
+	}
+}
+
+@mixin transitions($prop){
+	-webkit-transition: $prop;
+    transition: $prop;
+}

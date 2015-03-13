@@ -1,3 +1,4 @@
+@import url("//fonts.googleapis.com/css?family=Oswald");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -52,4 +53,48 @@ a img {
 
 article, aside, details, figcaption, figure, footer, header, hgroup, main, menu, nav, section, summary {
   display: block;
+}
+
+html, body {
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+  color: #222;
+}
+
+.listContainer ul {
+  text-align: center;
+  font-size: 1.5rem;
+}
+.listContainer .item {
+  display: inline-block;
+  width: 50%;
+  background-color: #666;
+  -webkit-transition: background-color 0.3s;
+  transition: background-color 0.3s;
+}
+@media all and (min-width: 768px) {
+  .listContainer .item {
+    width: 33.3333333%;
+  }
+}
+@media all and (min-width: 1024px) {
+  .listContainer .item {
+    width: 25%;
+  }
+}
+.listContainer .item.selected {
+  background-color: #333;
+  color: #fff;
+}
+.listContainer .item span {
+  display: block;
+  border: 1px solid #333;
+  padding: 5vh 0;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+}
+@media all and (min-width: 768px) {
+  .listContainer .item span {
+    padding: 10vh 0;
+  }
 }
