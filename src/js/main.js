@@ -1,40 +1,40 @@
 function LunchTime(newSettings) {
 
 	this.version  	= "1.0",
-	this.items 		= ["Centro", "Kebab", "Corlam", "Pi", "Kmart","Burma","Macacs","Ikea"],
-	this.mode 		= ["start","disabled","outcome","loading"],
 	this.settings	= {
-						mainContainer	: "container",	
+						items 			: ["Centro", "Kebab", "Corlam", "Pi", "Kmart","Burma","Macacs","Ikea"],
+						mainContainer	: "container",								//Main container ID
 						listContainer	: {
-											idName 			: "lunchList",
-											classNormal		: "item",
+											idName 			: "lunchList",			//List container ID
+											classNormal		: "item",				//List Class
 											classSelected	: "selected"
 										  },
 						timer			: {
-											interval 	: 150,
-											increment	: 250,
-											threshold	: [2000,5000,8000]
-										  },		
-						//allowWildcard	: false,				// Allow wildcards
-						//wildcardItems	: [],					//future feature 	
-						allowAudio		: false,					//Play sound
-						srcAudio		: ["audio/beep-22.mp3","audio/beep-23.mp3","audio/beep-25.mp3"],	//Play sound
-						randomise		: true,			//Randomise list
+											interval 	: 150,						//time between beeps
+											increment	: 250,						//time increment for each threshold
+											threshold	: [3000,3000,4000]			//miliseconds for each threshold
+										  },			
+						allowAudio		: false,									//Play sound
+						srcAudio		: {
+											selection	: "audio/beep.mp3",			//Selection sound
+											selected 	: "audio/tadaa.mp3"			//Chosen item sound
+										  },
+						randomise		: true										//Randomise list
 					}
 
 
-	
-	var intCounter		= 0, 
+	//Local
+	var mode 			= ["start","disabled","outcome","loading"],	
+		intCounter		= 0, 
 		intTimeCount 	= 0,
 		intIndex		= 0, 
 		intTimer 		= this.settings.timer.interval,
 		intThreshold	= this.settings.timer.threshold[intIndex],
 		sound			= null,
-		arrAudio		= [],
+		arrAudio		= {},
 		_this			= this;
 
 	this.init  = function(arr){
-		console.log(this.version);
 
 		if (typeof newSettings !== "undefined"){
 
@@ -47,27 +47,28 @@ function LunchTime(newSettings) {
 		   	}
 		}
 
-		this.setMode(this.mode[0]); 
+		this.setMode(mode[0]); 
 
 		//Build markup
 		document
 			.getElementById(this.settings.listContainer.idName)
 			.appendChild(
 				this.buildList(
-					(this.settings.randomise)? this.randomiseItems(this.items): this.items
+					(this.settings.randomise)? this.randomiseItems(this.settings.items): this.settings.items
 				)
 			);
-		
-		
 
 		//Init audio
 		if (this.settings.allowAudio){
-			for (var i=0; i <this.settings.srcAudio.length;i++){
-				var name = "audio" + (i + 1);
-				arrAudio.push(
-					this.audioTrack(name, this.settings.srcAudio[i], 1, false)
-				);
-			}
+			for (var prop in this.settings.srcAudio) {
+		    	arrAudio[prop] = this.audioTrack(prop, this.settings.srcAudio[prop], 1, false);
+		   	}
+			// for (var i=0; i <this.settings.srcAudio.length;i++){
+			// 	var name = "audio" + (i + 1);
+			// 	arrAudio.push(
+			// 		this.audioTrack(name, this.settings.srcAudio[i], 1, false)
+			// 	);
+			// }
 		}
 		
 		//Init triggers
@@ -99,23 +100,21 @@ function LunchTime(newSettings) {
 
 			intTimeCount += intTimer;
 
-			if (intTimeCount > intThreshold ){
-				intIndex++;
-				intThreshold = _this.settings.timer.threshold[intIndex];
-				intTimer += _this.settings.timer.increment;
-			}
-
 			if (intIndex < _this.settings.timer.threshold.length){
-				//arrAudio[Math.floor(Math.random() * 2)].play();
-			 	arrAudio[0].pause();
-				arrAudio[0].currentTime = 0;
-			 	arrAudio[0].play();
+			 	arrAudio["selection"].pause();
+				arrAudio["selection"].currentTime = 0;
+			 	arrAudio["selection"].play();
 				_this.intervalRandomise();
 			} else{
 				_this.intCounter = null;
-				_this.setMode(_this.mode[2]); 
+				_this.setMode(mode[2]); 
 				_this.displayOutcome();
-				console.log("chosen!");
+			}
+
+			if (intTimeCount > intThreshold ){
+				intIndex++;
+				intThreshold += _this.settings.timer.threshold[intIndex];
+				intTimer += _this.settings.timer.increment;
 			}
 		}
 		, Math.round(intTimer));
@@ -145,29 +144,23 @@ function LunchTime(newSettings) {
 		return list;
 	}
 
-	this.setMode = function (mode){
+	this.setMode = function (m){
 
 		var container = document.getElementById(this.settings.mainContainer);
 
-		container.className =  "container " + mode;
+		container.className =  "container " + m;
 
-		switch(mode){
-			case this.mode[0]: break;
-			case this.mode[1]: break;
-			case this.mode[2]: break;
-			case this.mode[3]: break;
+		switch(m){
+			case mode[0]: break;
+			case mode[1]: break;
+			case mode[2]: break;
+			case mode[3]: break;
 		}
-
-		// if (mode === this.mode[0]){
-
-		// } else if (mode === this.mode[1]){
-
-		// }
 	}
 
 	this.buttonStart = function(){
 		this.disabled = true;
-		_this.setMode(_this.mode[1]); 
+		_this.setMode(mode[1]); 
 		_this.intervalRandomise();
 	}
 
