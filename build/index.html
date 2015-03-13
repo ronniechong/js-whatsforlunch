@@ -8,8 +8,7 @@
   </head>
   <body>
     <div id="container" class="container">
-      <div id="debug"></div>
-      <div id="lunchList"></div>
+      <div id="lunchList" class="listContainer"></div>
       <div class="input-container">
         <button id="button" name="submit">Submit</button>
         <button id="replay" name="replay">Pick again</button>
@@ -18,7 +17,8 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
       var settings = {
-      		allowAudio:true
+      		items 		: ["Centro Food Court", "Kebab Joint", "Corlam Kitcen", "Pi Cafe", "Kmart Cafe","Free Burma Cafe","McDonalds","Ikea Food Court", "Subway","Fish & Chips"],
+      		allowAudio	:true
       	},
       	lunchTime = new LunchTime(settings);
     </script>
