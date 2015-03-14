@@ -177,7 +177,7 @@ function LunchTime(newSettings) {
 		audio.src 		= src;
 		audio.volume 	= volume;
 		audio.loop 		= loop;
-		audio.preload	= "auto";
+		//audio.preload	= "auto";
 
 		return audio;
 
