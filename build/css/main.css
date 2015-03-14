@@ -81,6 +81,13 @@ button {
 button:hover, button:focus, button:active {
   background-color: #c6985f;
 }
+button[disabled] {
+  opacity: 0.5;
+  cursor: wait;
+}
+button[disabled]:hover, button[disabled]:focus, button[disabled]:active {
+  background-color: #d3b185;
+}
 button span {
   padding: 12px 16px;
   display: block;

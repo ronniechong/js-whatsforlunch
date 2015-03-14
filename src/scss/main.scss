@@ -51,6 +51,17 @@ button{
 	&:active{
 		background-color:darken($bg-clr,35%);
 	}
+
+	&[disabled]{
+		opacity:0.5;
+		cursor: wait;
+		&:hover,
+		&:focus,
+		&:active{
+			background-color:darken($bg-clr,25%);
+		}
+	}
+
 	span{
 		padding:12px 16px;
 		display:block;
