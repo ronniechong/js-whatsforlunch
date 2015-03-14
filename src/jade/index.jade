@@ -7,14 +7,18 @@ html
 		link(rel="stylesheet" href="css/main.css")
 	body
 		.container#container
+			.heading
+				h1 What's for lunch today?
 			.listContainer#lunchList
-			.input-container
-				button#button(name="submit") Submit
-				button#replay(name="replay") Pick again
+			.inputContainer
+				button#button.btnSubmit(name="submit") 
+					span Decide for me!
+				button#replay.btnReplay(name="replay")
+					span Pick again
 		script(type="text/javascript" src="js/main.js")
 		script(type="text/javascript").
 			var settings = {
-					items 		: ["Centro Food Court", "Kebab Joint", "Corlam Kitcen", "Pi Cafe", "Kmart Cafe","Free Burma Cafe","McDonalds","Ikea Food Court", "Subway","Fish & Chips"],
+					items 		: ["Centro Food Court", "Kebab Joint", "Corlam Kitchen", "Pi Cafe", "Kmart Cafe","Free Burma Cafe","McDonalds","Ikea Food Court", "Subway","Fish & Chips"],
 					allowAudio	:true
 				},
 				lunchTime = new LunchTime(settings);

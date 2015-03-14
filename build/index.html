@@ -8,16 +8,19 @@
   </head>
   <body>
     <div id="container" class="container">
+      <div class="heading">
+        <h1>What's for lunch today?</h1>
+      </div>
       <div id="lunchList" class="listContainer"></div>
-      <div class="input-container">
-        <button id="button" name="submit">Submit</button>
-        <button id="replay" name="replay">Pick again</button>
+      <div class="inputContainer">
+        <button id="button" name="submit" class="btnSubmit"> <span>Decide for me!</span></button>
+        <button id="replay" name="replay" class="btnReplay"><span>Pick again</span></button>
       </div>
     </div>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
       var settings = {
-      		items 		: ["Centro Food Court", "Kebab Joint", "Corlam Kitcen", "Pi Cafe", "Kmart Cafe","Free Burma Cafe","McDonalds","Ikea Food Court", "Subway","Fish & Chips"],
+      		items 		: ["Centro Food Court", "Kebab Joint", "Corlam Kitchen", "Pi Cafe", "Kmart Cafe","Free Burma Cafe","McDonalds","Ikea Food Court", "Subway","Fish & Chips"],
       		allowAudio	:true
       	},
       	lunchTime = new LunchTime(settings);
