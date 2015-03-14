@@ -5,36 +5,89 @@
 @import "mixin";
 
 //Variables
-$item-borderColor 		: #333;
-$item-bgColor 			: #333;
-$item-bgColor--selected	: #666;
+$fnt-family				: "Oswald", sans-serif;
 
-$fnt-clr				: #222;
-$fnt-clr--selected		: #fff;
+$primary-clr			: #6699FF;
+$secondary-clr			: #104386;
+$white-clr				: #ffffff;
+$black-clr				: #000000;
+
+$item-borderColor 		: #E1D4C0;
+$item-bgColor 			: $primary-clr;
+$item-bgColor--selected	: $secondary-clr;
+
+$fnt-clr				: #FF6600;
+$fnt-clr--selected		: #F5EDE3;
+
+$fnt-heading			: #FF6600;
+
+$bg-clr 				: #F5EDE3;
+
+
 
 //General
 html, body{
-	font-family:"Oswald", sans-serif;
+	font-family:$fnt-family;
 	font-size: 16px;
 	color:$fnt-clr;
 }
 body{
+	background:$bg-clr;
+}
 
+button{
+	display:inline-block;
+	border:1px solid darken($bg-clr,35%);
+	font-size:1.5rem;
+	cursor:pointer;
+	font-family:$fnt-family;
+	background-color:darken($bg-clr,25%);
+	color:$black-clr;
+	-webkit-border-radius:5px;
+	border-radius:5px;
+	@include transitions(all 0.3s);
+	&:hover,
+	&:focus,
+	&:active{
+		background-color:darken($bg-clr,35%);
+	}
+	span{
+		padding:12px 16px;
+		display:block;
+	}
+}
+.btnReplay{
+	display:none;
+}
+
+h1{
+	font-size:48px;
+	font-size:8vw;
+	color:$fnt-heading;
+	text-align:center;
 }
 .container{
 	
 }
+.inputContainer{
+	text-align:center;
+	padding:5vh 5vw;
+}
+.heading{
+	padding:20px 0;
+}
+
+
 
 .listContainer{
 	ul{
 		text-align:center;
-		font-size:1.5rem;
+		font-size:3vw;
+		position:relative;
 	}
 	.item{
 		display:inline-block;
 		width:50%;
-		background-color:$item-bgColor--selected;
-		@include transitions (background-color 0.3s);
 		@include mediaquery(md){
 			width:33.3333333%;
 		}
@@ -42,19 +95,33 @@ body{
 			width:25%;
 		}
 		&.selected{
-			background-color:$item-bgColor;
-			color:$fnt-clr--selected;
+			span{
+				background-color:$item-bgColor--selected;
+				color:$fnt-clr--selected;
+			}
 		}
 		span{
 			display: block;
+			background-color:$item-bgColor;
+			color:$secondary-clr;
 			border:1px solid $item-borderColor;
-			padding:5vh 0;
-			@include transitions (all 0.3s);
+			padding:4vh 0;
+			@include transitions ((background-color 0.3s , padding 0.3s));
 			@include mediaquery(md){
-				padding:10vh 0;
+				padding:6vh 0;
 			}
 		}
 	}
 }
 
 //Modes
+
+.outcome{
+	.listContainer{
+		.selected{
+			span{
+				background-color:$fnt-heading;
+			}
+		}
+	}
+}
