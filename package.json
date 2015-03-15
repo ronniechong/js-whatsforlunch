@@ -1,15 +1,17 @@
 {
   "name": "js-whatsforlunch",
   "version": "1.0.0",
-  "homepage": "http://www.github.com/ronniechong",
+  "homepage": "http://www.github.com/ronniechong/js-whatsforlunch/",
   "author": "Ronnie Chong <ronniechong@gmail.com>",
-  "description": "Decide your daily lunch venue",
+  "description": "Decides daily lunch venue randomly",
   "keywords": [
     "javascript",
     "lunch",
     "random",
     "roulette",
-    "wheeloffortune"
+    "css3",
+    "firebase",
+    "responsive"
   ],
   "repository": {
     "type": "git",
