@@ -1,41 +1,34 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>js-whatsforlunch by ronniechong</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <title>What's for lunch?</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://rawgit.com/ronniechong/js-whatsforlunch/tree/master/build/css/main.css">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>js-whatsforlunch</h1>
-        <p>Decides my daily lunch</p>
-
-        <p class="view"><a href="https://github.com/ronniechong/js-whatsforlunch">View the Project on GitHub <small>ronniechong/js-whatsforlunch</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/ronniechong/js-whatsforlunch/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/ronniechong/js-whatsforlunch/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/ronniechong/js-whatsforlunch">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <p>Test</p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/ronniechong">ronniechong</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+    <div id="container" class="container">
+      <div class="heading">
+        <h1>So, what's for lunch today?</h1>
+      </div>
+      <div id="lunchList" class="listContainer"></div>
+      <div class="inputContainer">
+        <button id="button" name="submit" class="btnSubmit"> <span>Decide for me!</span></button>
+      </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
+    <div class="loader"></div>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script type="text/javascript" src="https://rawgit.com/ronniechong/js-whatsforlunch/master/build/js/main.js"></script>
+    <script type="text/javascript">
+      var settings = {
+          allowAudio  : true,
+          srcAudio : {
+                        selection:"https://rawgit.com/ronniechong/js-whatsforlunch/tree/master/build/audio/beep.mp3",
+                        selected:"https://rawgit.com/ronniechong/js-whatsforlunch/tree/master/build/audio/tadaa.mp3"
+                      }
+          randomise : true
+        },
+        lunchTime = new LunchTime(settings);
+    </script>
   </body>
 </html>
