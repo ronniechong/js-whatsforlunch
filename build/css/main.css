@@ -124,7 +124,7 @@ button span {
 
 h1 {
   font-size: 48px;
-  font-size: 8vw;
+  font-size: 6vw;
   color: #FF6600;
   text-align: center;
 }
@@ -151,21 +151,26 @@ h1 {
 .listContainer ul {
   text-align: center;
   font-size: 30px;
-  font-size: 3vw;
+  font-size: 3vh;
   position: relative;
 }
 .listContainer .item {
   display: inline-block;
   width: 50%;
 }
-@media all and (min-width: 768px) {
+@media all and (min-width: 480px) {
   .listContainer .item {
     width: 33.3333333%;
   }
 }
-@media all and (min-width: 1024px) {
+@media all and (min-width: 768px) {
   .listContainer .item {
     width: 25%;
+  }
+}
+@media all and (min-width: 1024px) {
+  .listContainer .item {
+    width: 20%;
   }
 }
 .listContainer .item.selected span {

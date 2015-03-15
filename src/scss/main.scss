@@ -80,7 +80,7 @@ button{
 
 h1{
 	font-size:48px;
-	font-size:8vw;
+	font-size:6vw;
 	color:$fnt-heading;
 	text-align:center;
 }
@@ -102,17 +102,20 @@ h1{
 	ul{
 		text-align:center;
 		font-size:30px;
-		font-size:3vw;
+		font-size:3vh;
 		position:relative;
 	}
 	.item{
 		display:inline-block;
 		width:50%;
-		@include mediaquery(md){
+		@include mediaquery(sm){
 			width:33.3333333%;
 		}
-		@include mediaquery(lg){
+		@include mediaquery(md){
 			width:25%;
+		}
+		@include mediaquery(lg){
+			width:20%;
 		}
 		&.selected{
 			span{

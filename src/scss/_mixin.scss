@@ -5,6 +5,8 @@
 		@media all and (min-width: 768px) { @content; }
 	} @else if $breakpoint == lg {
 		@media all and (min-width: 1024px) { @content; }
+	} @else if $breakpoint == xl {
+		@media all and (min-width: 1200px) { @content; }
 	}
 }
 
