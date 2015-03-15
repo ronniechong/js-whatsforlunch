@@ -13,14 +13,20 @@ Install NPM (if you do not have one)
 Install Gem and Compass
 
 Install dependencies
-`npm install`
+```
+npm install
+```
 
 Execute Grunt
-`grunt watch`
+```
+grunt watch
+```
 
 ## How to run
 Instantiate JS
-`var lunchTime = new LunchTime();`
+```
+var lunchTime = new LunchTime();
+```
 
 You may overwrite settings by parsing:
 ```
