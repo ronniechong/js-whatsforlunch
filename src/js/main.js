@@ -45,7 +45,7 @@ function LunchTime(newSettings) {
 		   	}
 		}
 
-		this.setMode(mode[0]); 
+		this.setMode(mode[3]); 
 
 		//Build markup
 		document
@@ -63,13 +63,12 @@ function LunchTime(newSettings) {
 		   	}
 		}
 		
-		//Init triggers
+		//Init trigger
 		document.getElementById("button").addEventListener("click", this.buttonStart, false);
-		document.getElementById("replay").addEventListener("click", this.reset, false);
-
+		document.addEventListener('DOMContentLoaded', function(){
+			_this.setMode(mode[0]);
+		}, false);
 	}
-
-	
 
 	this.intervalRandomise = function(){
 		
@@ -90,11 +89,7 @@ function LunchTime(newSettings) {
 			intTimeCount += intTimer;
 
 			if (intIndex < _this.settings.timer.threshold.length){
-				if (arrAudio.hasOwnProperty("selection")){
-				 	arrAudio["selection"].pause();
-					arrAudio["selection"].currentTime = 0;
-				 	arrAudio["selection"].play();
-				 }
+				_this.playAudio("selection");
 				_this.intervalRandomise();
 			} else{
 				_this.intCounter = null;
@@ -139,16 +134,17 @@ function LunchTime(newSettings) {
 
 	this.setMode = function (m){
 
-		var container = document.getElementById(this.settings.mainContainer);
+		var body = document.getElementsByTagName("body")[0];
 
-		container.className =  "container " + m;
 
-		switch(m){
-			case mode[0]: break;
-			case mode[1]: break;
-			case mode[2]: break;
-			case mode[3]: break;
-		}
+		body.className =  m;
+
+		// switch(m){
+		// 	case mode[0]: break;
+		// 	case mode[1]: break;
+		// 	case mode[2]: break;
+		// 	case mode[3]: break;
+		// }
 	}
 
 	this.buttonStart = function(){
@@ -158,16 +154,28 @@ function LunchTime(newSettings) {
 	}
 
 	this.displayOutcome = function(){
-		if (arrAudio.hasOwnProperty("selected")){
-		 	arrAudio["selected"].pause();
-			arrAudio["selected"].currentTime = 0;
-		 	arrAudio["selected"].play();
-		 }
+		this.playAudio("selected");
+		this.reset();
 	}
 
 	this.reset = function(){
 		//reset
+		var btn = document.getElementById("button");
+		btn.disabled = false;
+		_this.setMode(mode[0]);
+		intTimeCount = 0;
+		intIndex = 0, 
+		intTimer  = this.settings.timer.interval,
+		intThreshold = this.settings.timer.threshold[intIndex];
 		
+	}
+
+	this.playAudio = function(str){
+		if (arrAudio.hasOwnProperty(str)){
+			arrAudio[str].pause();
+			arrAudio[str].currentTime = 0;
+		 	arrAudio[str].play();
+		 }
 	}
 
 	this.audioTrack = function (name,src,volume,loop) {
@@ -177,7 +185,7 @@ function LunchTime(newSettings) {
 		audio.src 		= src;
 		audio.volume 	= volume;
 		audio.loop 		= loop;
-		//audio.preload	= "auto";
+		audio.preload	= "auto";
 
 		return audio;
 
