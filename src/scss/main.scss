@@ -31,9 +31,11 @@ html, body{
 	font-family:$fnt-family;
 	font-size: 16px;
 	color:$fnt-clr;
+	height:100%;
 }
 body{
 	background:$bg-clr;
+	min-height:100%;
 }
 
 button{
@@ -57,6 +59,7 @@ button{
 	}
 
 	&[disabled]{
+		-webkit-opacity:0.5;
 		opacity:0.5;
 		cursor: default;
 		-webkit-box-shadow: inset 0 -4px darken($bg-clr,25%);
@@ -83,14 +86,15 @@ h1{
 .inputContainer{
 	text-align:center;
 	padding:5vh 5vw;
+	@include transitions(all 1s);
 }
 .heading{
 	padding:20px 0;
+	@include transitions(all 1s);
 }
 
-
-
 .listContainer{
+	@include transitions(all 1s);
 	ul{
 		text-align:center;
 		font-size:3vw;
@@ -174,6 +178,22 @@ h1{
 
 .loading{
 	overflow:hidden;
+	.heading{
+		-webkit-transform:translateY(-50%);
+		transform:translateY(-50%);
+		opacity:0;
+		-webkit-opacity:0;
+	}
+	.listContainer{
+		opacity:0;
+		-webkit-opacity:0;	
+	}
+	.inputContainer{
+		-webkit-transform:translateY(10%);
+		transform:translateY(10%);
+		opacity:0;
+		-webkit-opacity:0;
+	}
 	.loader{
 		display:block;
 	}
