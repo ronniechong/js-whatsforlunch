@@ -182,7 +182,7 @@ function LunchTime(newSettings) {
 	}
 
 	this.playAudio = function(str){
-		if (arrAudio.hasOwnProperty(str)){
+		if (arrAudio.hasOwnProperty(str) && this.settings.allowAudio){
 			arrAudio[str].pause();
 			arrAudio[str].currentTime = 0;
 		 	arrAudio[str].play();
