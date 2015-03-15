@@ -3,6 +3,7 @@
 @import "compass";
 @import "compass/reset";
 @import "mixin";
+@import "animation";
 
 //Variables
 $fnt-family				: "Oswald", sans-serif;
@@ -45,20 +46,24 @@ button{
 	color:$black-clr;
 	-webkit-border-radius:5px;
 	border-radius:5px;
+	-webkit-box-shadow: inset 0 -4px darken($bg-clr,35%);
+  	box-shadow: inset 0 -4px darken($bg-clr,35%);
 	@include transitions(all 0.3s);
-	&:hover,
-	&:focus,
 	&:active{
-		background-color:darken($bg-clr,35%);
+		-webkit-box-shadow: inset 0 -1px darken($bg-clr,35%);
+  		box-shadow: inset 0 -1px darken($bg-clr,35%);
+		-webkit-transform: translate(0, 3px);
+  		transform: translate(0, 3px);
 	}
 
 	&[disabled]{
 		opacity:0.5;
-		cursor: wait;
-		&:hover,
-		&:focus,
+		cursor: default;
+		-webkit-box-shadow: inset 0 -4px darken($bg-clr,25%);
+  		box-shadow: inset 0 -4px darken($bg-clr,25%);
 		&:active{
-			background-color:darken($bg-clr,25%);
+			-webkit-transform: translate(0, 0);
+  			transform: translate(0, 0);
 		}
 	}
 
@@ -67,9 +72,6 @@ button{
 		display:block;
 	}
 }
-.btnReplay{
-	display:none;
-}
 
 h1{
 	font-size:48px;
@@ -77,9 +79,7 @@ h1{
 	color:$fnt-heading;
 	text-align:center;
 }
-.container{
-	
-}
+
 .inputContainer{
 	text-align:center;
 	padding:5vh 5vw;
@@ -125,8 +125,35 @@ h1{
 	}
 }
 
-//Modes
+//Loader
+.loader{
+	display:none;
+	background:rgba($white-clr,0.5);
+	position:fixed;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	&:before{
+		content:"";
+		position:absolute;
+		left:50%;
+		top:50%;
+		width:2rem;
+		height:2rem;
+		border:4px solid lighten($fnt-heading,15%);
+		border-top-color: $fnt-heading;
+		-webkit-border-radius:100%;
+		border-radius:100%;
+		//-webkit-transform:translate(-50%,-50%);
+		//transform:translate(-50%,-50%);
+		-webkit-animation: animate-loader 1s infinite ease-out;
+		animation: animate-loader 1s infinite ease-out;
+	}
+}
 
+
+//Modes
 .outcome{
 	.listContainer{
 		.selected{
@@ -134,5 +161,20 @@ h1{
 				background-color:$fnt-heading;
 			}
 		}
+	}
+}
+
+.disabled{
+	.inputContainer{
+		button{
+			cursor: wait;
+		}
+	}
+}
+
+.loading{
+	overflow:hidden;
+	.loader{
+		display:block;
 	}
 }
