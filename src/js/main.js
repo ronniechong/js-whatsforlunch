@@ -6,20 +6,20 @@ function LunchTime(newSettings) {
 						mainContainer	: "container",								//Main container ID
 						listContainer	: {
 											idName 			: "lunchList",			//List container ID
-											classNormal		: "item",				//List Class
-											classSelected	: "selected"
+											classNormal		: "item",				//List class
+											classSelected	: "selected"			//Selected list class
 										  },
 						timer			: {
 											interval 	: 150,						//time between beeps
 											increment	: 250,						//time increment for each threshold
-											threshold	: [3000,3000,4000]			//miliseconds for each threshold
+											threshold	: [3000,3000,3000]			//miliseconds for each threshold
 										  },			
 						allowAudio		: false,									//Play sound
 						srcAudio		: {
 											selection	: "audio/beep.mp3",			//Selection sound
 											selected 	: "audio/tadaa.mp3"			//Chosen item sound
 										  },
-						randomise		: true										//Randomise list
+						randomise		: false										//Randomise list
 					}
 	//Local
 	var mode 			= ["start","disabled","outcome","loading"],	
@@ -30,12 +30,45 @@ function LunchTime(newSettings) {
 		intThreshold	= this.settings.timer.threshold[intIndex],
 		sound			= null,
 		arrAudio		= {},
-		_this			= this;
+		_this			= this,
+		fbRef			= new Firebase("https://js-whatsforlunch.firebaseio.com/");
 
 	this.init  = function(arr){
 
-		if (typeof newSettings !== "undefined"){
+		this.setMode(mode[3]); 
 
+		//Firebase API
+		fbRef.on("value", function(snapshot) {
+		  	var arr 		= [],
+		  		container 	= document.getElementById(_this.settings.listContainer.idName),
+		  		body 		= document.getElementsByTagName("body")[0],
+		  		isStart		= ((body.className).indexOf(mode[0])>=0)?true:false,
+		  		isLoading	= ((body.className).indexOf(mode[3])>=0)?true:false,
+		  		fbItems 	= snapshot.val();
+
+		  	if (isStart || isLoading) {
+			  	for (var prop in fbItems) {
+			  		arr.push(fbItems[prop]);
+			  	}
+			  	_this.settings.items = arr;
+
+			  	_this.setMode(mode[0]);
+
+			  	//Build markup
+			  	while(container.firstChild){
+			  		container.removeChild(container.firstChild);
+			  	}
+				container.appendChild(
+							_this.buildList(
+								(_this.settings.randomise)? _this.randomiseItems(_this.settings.items): _this.settings.items
+							)
+						);
+			}
+		  	
+		});
+
+		//Check of settings overwrite
+		if (typeof newSettings !== "undefined"){
 			for (var prop in this.settings) {
 		    	if(this.settings.hasOwnProperty(prop)){
 		    		if (typeof (newSettings[prop]) !== "undefined"){
@@ -44,17 +77,6 @@ function LunchTime(newSettings) {
 		      	}
 		   	}
 		}
-
-		this.setMode(mode[3]); 
-
-		//Build markup
-		document
-			.getElementById(this.settings.listContainer.idName)
-			.appendChild(
-				this.buildList(
-					(this.settings.randomise)? this.randomiseItems(this.settings.items): this.settings.items
-				)
-			);
 
 		//Init audio
 		if (this.settings.allowAudio){
@@ -65,9 +87,7 @@ function LunchTime(newSettings) {
 		
 		//Init trigger
 		document.getElementById("button").addEventListener("click", this.buttonStart, false);
-		document.addEventListener('DOMContentLoaded', function(){
-			_this.setMode(mode[0]);
-		}, false);
+	
 	}
 
 	this.intervalRandomise = function(){
@@ -133,18 +153,8 @@ function LunchTime(newSettings) {
 	}
 
 	this.setMode = function (m){
-
 		var body = document.getElementsByTagName("body")[0];
-
-
 		body.className =  m;
-
-		// switch(m){
-		// 	case mode[0]: break;
-		// 	case mode[1]: break;
-		// 	case mode[2]: break;
-		// 	case mode[3]: break;
-		// }
 	}
 
 	this.buttonStart = function(){
@@ -179,7 +189,6 @@ function LunchTime(newSettings) {
 	}
 
 	this.audioTrack = function (name,src,volume,loop) {
-
 		var  audio = document.createElement("audio");
 		audio.name 		= name;
 		audio.src 		= src;
@@ -188,8 +197,8 @@ function LunchTime(newSettings) {
 		audio.preload	= "auto";
 
 		return audio;
-
     }
 
+	//Initialise
 	this.init();
 };

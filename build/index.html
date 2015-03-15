@@ -9,7 +9,7 @@
   <body>
     <div id="container" class="container">
       <div class="heading">
-        <h1>What's for lunch today?</h1>
+        <h1>So, what's for lunch today?</h1>
       </div>
       <div id="lunchList" class="listContainer"></div>
       <div class="inputContainer">
@@ -17,11 +17,12 @@
       </div>
     </div>
     <div class="loader"></div>
+    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
       var settings = {
-      		items 		: ["Centro Food Court", "Kebab Joint", "Corlam Kitchen", "Pi Cafe", "Kmart Cafe","Free Burma Cafe","McDonalds","Ikea Food Court", "Subway","Fish & Chips"],
-      		allowAudio	:true
+      		allowAudio	: true,
+      		randomise	: true
       	},
       	lunchTime = new LunchTime(settings);
     </script>

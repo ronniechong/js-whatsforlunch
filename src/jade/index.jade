@@ -8,16 +8,17 @@ html
 	body
 		.container#container
 			.heading
-				h1 What's for lunch today?
+				h1 So, what's for lunch today?
 			.listContainer#lunchList
 			.inputContainer
 				button#button.btnSubmit(name="submit") 
 					span Decide for me!
 		.loader
+		script(src="https://cdn.firebase.com/js/client/2.2.2/firebase.js")
 		script(type="text/javascript" src="js/main.js")
 		script(type="text/javascript").
 			var settings = {
-					items 		: ["Centro Food Court", "Kebab Joint", "Corlam Kitchen", "Pi Cafe", "Kmart Cafe","Free Burma Cafe","McDonalds","Ikea Food Court", "Subway","Fish & Chips"],
-					allowAudio	:true
+					allowAudio	: true,
+					randomise	: true
 				},
 				lunchTime = new LunchTime(settings);
