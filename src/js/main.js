@@ -2,24 +2,25 @@ function LunchTime(newSettings) {
 
 	this.version  	= "1.0",
 	this.settings	= {
+						srcFile			: "https://js-whatsforlunch.firebaseio.com/",	//Default JSON string
 						items 			: ["Item 1", "Item 2", "Item 3", "Item 4"],
-						mainContainer	: "container",								//Main container ID
+						mainContainer	: "container",									//Main container ID
 						listContainer	: {
-											idName 			: "lunchList",			//List container ID
-											classNormal		: "item",				//List class
-											classSelected	: "selected"			//Selected list class
+											idName 			: "lunchList",				//List container ID
+											classNormal		: "item",					//List class
+											classSelected	: "selected"				//Selected list class
 										  },
 						timer			: {
-											interval 	: 150,						//time between beeps
-											increment	: 250,						//time increment for each threshold
-											threshold	: [3000,3000,3000]			//miliseconds for each threshold
+											interval 	: 150,							//time between beeps
+											increment	: 250,							//time increment for each threshold
+											threshold	: [3000,3000,3000]				//miliseconds for each threshold
 										  },			
-						allowAudio		: false,									//Play sound
+						allowAudio		: false,										//Play sound
 						srcAudio		: {
-											selection	: "audio/beep.mp3",			//Selection sound
-											selected 	: "audio/tadaa.mp3"			//Chosen item sound
+											selection	: "audio/beep.mp3",				//Selection sound
+											selected 	: "audio/tadaa.mp3"				//Chosen item sound
 										  },
-						randomise		: false										//Randomise list
+						randomise		: false											//Randomise list
 					}
 	//Local
 	var mode 			= ["start","disabled","outcome","loading"],	
@@ -31,7 +32,7 @@ function LunchTime(newSettings) {
 		sound			= null,
 		arrAudio		= {},
 		_this			= this,
-		fbRef			= new Firebase("https://js-whatsforlunch.firebaseio.com/");
+		fbRef			= new Firebase(this.settings.srcFile);
 
 	this.init  = function(arr){
 
