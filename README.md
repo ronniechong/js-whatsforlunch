@@ -56,6 +56,15 @@ var settings = {
 | srcAudio | selected | File source for selected audio | _"audio/tadaa.mp3"_
 | randomise | - | Randomise lunch list | _false_
 
+### Firebase JSON string
+The JSON string should be just a simple list
+```
+{
+    "item1" : " Cafe A",
+    "item2" : " Cafe B",
+    "item3" : " Cafe C"
+}
+```
 
 ## Issues & To-Dos
 - Automate Firebase installation instead of manual script insertion
