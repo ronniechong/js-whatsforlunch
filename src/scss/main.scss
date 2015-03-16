@@ -52,6 +52,10 @@ button{
     -webkit-box-shadow: inset 0 -4px darken($bg-clr,35%);
     box-shadow: inset 0 -4px darken($bg-clr,35%);
     @include transitions(all 0.3s);
+    &:hover,
+    &:focus{
+        background-color:darken($bg-clr,30%);
+    }
     &:active{
         -webkit-box-shadow: inset 0 -1px darken($bg-clr,35%);
         box-shadow: inset 0 -1px darken($bg-clr,35%);
@@ -65,6 +69,10 @@ button{
         cursor: default;
         -webkit-box-shadow: inset 0 -4px darken($bg-clr,25%);
         box-shadow: inset 0 -4px darken($bg-clr,25%);
+        &:hover,
+        &:focus{
+            background-color:darken($bg-clr,25%);
+        }
         &:active{
             -webkit-transform: translate(0, 0);
             transform: translate(0, 0);

@@ -99,6 +99,9 @@ button {
   -webkit-transition: all 0.3s;
   transition: all 0.3s;
 }
+button:hover, button:focus {
+  background-color: #cda572;
+}
 button:active {
   -webkit-box-shadow: inset 0 -1px #c6985f;
   box-shadow: inset 0 -1px #c6985f;
@@ -111,6 +114,9 @@ button[disabled] {
   cursor: default;
   -webkit-box-shadow: inset 0 -4px #d3b185;
   box-shadow: inset 0 -4px #d3b185;
+}
+button[disabled]:hover, button[disabled]:focus {
+  background-color: #d3b185;
 }
 button[disabled]:active {
   -webkit-transform: translate(0, 0);
