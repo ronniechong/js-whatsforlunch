@@ -121,8 +121,8 @@ h1{
             span{
                 background-color:$item-bgColor--selected;
                 color:$fnt-clr--selected;
-                -webkit-box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
-                box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
+                -webkit-box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--selected,15%);
+                box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--selected,15%);
             }
         }
         span{
