@@ -42,7 +42,7 @@ button{
 	display:inline-block;
 	border:1px solid darken($bg-clr,35%);
 	font-size:38px;
-	font-size:3vw;
+	font-size:3vmax;
 	cursor:pointer;
 	font-family:$fnt-family;
 	background-color:darken($bg-clr,25%);
@@ -87,13 +87,13 @@ h1{
 
 .inputContainer{
 	text-align:center;
-	padding:30px 0;
-	padding:4vh 0;
+	padding:25px 0;
+	padding:2vh 0;
 	@include transitions(all 1s);
 }
 .heading{
-	padding:30px 0;
-	padding:4vh 0;
+	padding:25px 0;
+	padding:2vh 0;
 	@include transitions(all 1s);
 }
 
@@ -121,6 +121,8 @@ h1{
 			span{
 				background-color:$item-bgColor--selected;
 				color:$fnt-clr--selected;
+				-webkit-box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
+  				box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
 			}
 		}
 		span{
@@ -128,10 +130,15 @@ h1{
 			background-color:$item-bgColor;
 			color:$secondary-clr;
 			border:1px solid $item-borderColor;
-			padding:4vh 0;
-			@include transitions ((background-color 0.3s , padding 0.3s));
+			padding:2vh 0;
+			-webkit-box-shadow: inset -3px -3px darken($item-bgColor,15%);
+  			box-shadow: inset -3px -3px darken($item-bgColor,15%);
+  			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			@include transitions ((padding 0.3s));
 			@include mediaquery(md){
-				padding:6vh 0;
+				padding:4vh 0;
 			}
 		}
 	}
@@ -177,15 +184,6 @@ h1{
 }
 
 //Modes
-.outcome{
-	.listContainer{
-		.selected{
-			span{
-				background-color:$fnt-heading;
-			}
-		}
-	}
-}
 
 .disabled{
 	.inputContainer{

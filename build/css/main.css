@@ -87,7 +87,7 @@ button {
   display: inline-block;
   border: 1px solid #c6985f;
   font-size: 38px;
-  font-size: 3vw;
+  font-size: 3vmax;
   cursor: pointer;
   font-family: "Oswald", sans-serif;
   background-color: #d3b185;
@@ -131,15 +131,15 @@ h1 {
 
 .inputContainer {
   text-align: center;
-  padding: 30px 0;
-  padding: 4vh 0;
+  padding: 25px 0;
+  padding: 2vh 0;
   -webkit-transition: all 1s;
   transition: all 1s;
 }
 
 .heading {
-  padding: 30px 0;
-  padding: 4vh 0;
+  padding: 25px 0;
+  padding: 2vh 0;
   -webkit-transition: all 1s;
   transition: all 1s;
 }
@@ -176,19 +176,26 @@ h1 {
 .listContainer .item.selected span {
   background-color: #104386;
   color: #F5EDE3;
+  -webkit-box-shadow: inset -3px -3px #1865ca;
+  box-shadow: inset -3px -3px #1865ca;
 }
 .listContainer .item span {
   display: block;
   background-color: #6699FF;
   color: #104386;
   border: 1px solid #E1D4C0;
-  padding: 4vh 0;
-  -webkit-transition: background-color 0.3s, padding 0.3s;
-  transition: background-color 0.3s, padding 0.3s;
+  padding: 2vh 0;
+  -webkit-box-shadow: inset -3px -3px #1a66ff;
+  box-shadow: inset -3px -3px #1a66ff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-transition: padding 0.3s;
+  transition: padding 0.3s;
 }
 @media all and (min-width: 768px) {
   .listContainer .item span {
-    padding: 6vh 0;
+    padding: 4vh 0;
   }
 }
 
@@ -228,10 +235,6 @@ h1 {
   border-radius: 100%;
   -webkit-animation: animate-loader 1s infinite alternate-reverse ease-in;
   animation: animate-loader 1s infinite alternate-reverse ease-in;
-}
-
-.outcome .listContainer .selected span {
-  background-color: #FF6600;
 }
 
 .disabled .inputContainer button {
