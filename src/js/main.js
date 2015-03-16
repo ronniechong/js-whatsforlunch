@@ -29,6 +29,7 @@ function LunchTime(newSettings) {
 		intIndex		= 0, 
 		intTimer 		= this.settings.timer.interval,
 		intThreshold	= this.settings.timer.threshold[intIndex],
+		prevRand		= 0,
 		sound			= null,
 		arrAudio		= {},
 		_this			= this,
@@ -61,7 +62,7 @@ function LunchTime(newSettings) {
 			  	}
 				container.appendChild(
 							_this.buildList(
-								(_this.settings.randomise)? _this.randomiseItems(_this.settings.items): _this.settings.items
+								(_this.settings.randomise)? _this.getRandomiseList(_this.settings.items): _this.settings.items
 							)
 						);
 			}
@@ -95,7 +96,7 @@ function LunchTime(newSettings) {
 		
 		this.intCounter = setTimeout(function(){
 						
-			var rand 			= Math.floor(Math.random() * (_this.settings.items.length - 1  + 1)),
+			var rand 			= _this.getRandomiseIndex(),
 				classNormal		= _this.settings.listContainer.classNormal,
 				classSelected	= _this.settings.listContainer.classSelected,
 				listContainer 	= document.getElementById(_this.settings.listContainer.idName),
@@ -127,7 +128,21 @@ function LunchTime(newSettings) {
 		, Math.round(intTimer));
 	}
 
-	this.randomiseItems = function(arr){
+	this.getRandomiseIndex = function(){
+		var rand = Math.floor(Math.random() * (_this.settings.items.length - 1  + 1));
+
+		while (prevRand == rand){
+			rand = Math.floor(Math.random() * (_this.settings.items.length - 1  + 1));
+			if (rand !==prevRand){
+				prevRand  = rand;
+				break;
+			}
+		}
+
+		return rand;
+	} 
+
+	this.getRandomiseList = function(arr){
 		
 		for (var i = arr.length - 1; i > 0; i--) {
 	        var j = Math.floor(Math.random() * (i + 1));
