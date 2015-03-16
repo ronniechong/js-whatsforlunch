@@ -1,24 +1,24 @@
 doctype html
 html
-	head
-		title What's for lunch?
-		meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
-		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		link(rel="stylesheet" href="css/main.css")
-	body
-		.container#container
-			.heading
-				h1 So, what's for lunch today?
-			.listContainer#lunchList
-			.inputContainer
-				button#button.btnSubmit(name="submit") 
-					span Decide for me!
-		.loader
-		script(src="https://cdn.firebase.com/js/client/2.2.2/firebase.js")
-		script(type="text/javascript" src="js/main.js")
-		script(type="text/javascript").
-			var settings = {
-					allowAudio	: true,
-					randomise	: true
-				},
-				lunchTime = new LunchTime(settings);
+    head
+        title What's for lunch?
+        meta(http-equiv="Content-Type" content="text/html; charset=utf-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        link(rel="stylesheet" href="css/main.css")
+    body
+        .container#container
+            .heading
+                h1 So, what's for lunch today?
+            .listContainer#lunchList
+            .inputContainer
+                button#button.btnSubmit(name="submit") 
+                    span Decide for me!
+        .loader
+        script(src="https://cdn.firebase.com/js/client/2.2.2/firebase.js")
+        script(type="text/javascript" src="js/main.js")
+        script(type="text/javascript").
+            var settings = {
+                    allowAudio  : true,
+                    randomise   : true
+                },
+                lunchTime = new LunchTime(settings);
