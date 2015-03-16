@@ -89,11 +89,15 @@ h1{
 	text-align:center;
 	padding:25px 0;
 	padding:2vh 0;
+	-webkit-opacity:0;
+	opacity:0;
 	@include transitions(all 1s);
 }
 .heading{
 	padding:25px 0;
 	padding:2vh 0;
+	-webkit-opacity:0;
+	opacity:0;
 	@include transitions(all 1s);
 }
 
@@ -184,6 +188,13 @@ h1{
 }
 
 //Modes
+.start{
+	.heading,
+	.inputContainer{
+		-webkit-opacity:1;
+		opacity:1;
+	}
+}
 
 .disabled{
 	.inputContainer{
