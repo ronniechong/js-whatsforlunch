@@ -133,8 +133,6 @@ h1 {
   text-align: center;
   padding: 25px 0;
   padding: 2vh 0;
-  -webkit-opacity: 0;
-  opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
 }
@@ -142,8 +140,6 @@ h1 {
 .heading {
   padding: 25px 0;
   padding: 2vh 0;
-  -webkit-opacity: 0;
-  opacity: 0;
   -webkit-transition: all 1s;
   transition: all 1s;
 }
@@ -239,12 +235,6 @@ h1 {
   border-radius: 100%;
   -webkit-animation: animate-loader 1s infinite alternate-reverse ease-in;
   animation: animate-loader 1s infinite alternate-reverse ease-in;
-}
-
-.start .heading,
-.start .inputContainer {
-  -webkit-opacity: 1;
-  opacity: 1;
 }
 
 .disabled .inputContainer button {
