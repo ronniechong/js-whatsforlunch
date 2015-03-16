@@ -23,7 +23,7 @@ function LunchTime(newSettings) {
 						randomise		: false											//Randomise list
 					}
 	//Local
-	var mode 			= ["start","disabled","outcome","loading"],	
+	var mode 			= ["start","disabled","loading"],	
 		intCounter		= 0, 
 		intTimeCount 	= 0,
 		intIndex		= 0, 
@@ -37,7 +37,7 @@ function LunchTime(newSettings) {
 
 	this.init  = function(arr){
 
-		this.setMode(mode[3]); 
+		this.setMode(mode[2]); 
 
 		//Firebase API
 		fbRef.on("value", function(snapshot) {
@@ -45,7 +45,7 @@ function LunchTime(newSettings) {
 		  		container 	= document.getElementById(_this.settings.listContainer.idName),
 		  		body 		= document.getElementsByTagName("body")[0],
 		  		isStart		= ((body.className).indexOf(mode[0])>=0)?true:false,
-		  		isLoading	= ((body.className).indexOf(mode[3])>=0)?true:false,
+		  		isLoading	= ((body.className).indexOf(mode[2])>=0)?true:false,
 		  		fbItems 	= snapshot.val();
 
 		  	if (isStart || isLoading) {
@@ -115,7 +115,6 @@ function LunchTime(newSettings) {
 				_this.intervalRandomise();
 			} else{
 				_this.intCounter = null;
-				_this.setMode(mode[2]); 
 				_this.displayOutcome();
 			}
 
