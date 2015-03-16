@@ -6,217 +6,217 @@
 @import "animation";
 
 //Variables
-$fnt-family				: "Oswald", sans-serif;
+$fnt-family             : "Oswald", sans-serif;
 
-$primary-clr			: #6699FF;
-$secondary-clr			: #104386;
-$white-clr				: #ffffff;
-$black-clr				: #000000;
+$primary-clr            : #6699FF;
+$secondary-clr          : #104386;
+$white-clr              : #ffffff;
+$black-clr              : #000000;
 
-$item-borderColor 		: #E1D4C0;
-$item-bgColor 			: $primary-clr;
-$item-bgColor--selected	: $secondary-clr;
+$item-borderColor       : #E1D4C0;
+$item-bgColor           : $primary-clr;
+$item-bgColor--selected : $secondary-clr;
 
-$fnt-clr				: #FF6600;
-$fnt-clr--selected		: #F5EDE3;
+$fnt-clr                : #FF6600;
+$fnt-clr--selected      : #F5EDE3;
 
-$fnt-heading			: #FF6600;
+$fnt-heading            : #FF6600;
 
-$bg-clr 				: #F5EDE3;
+$bg-clr                 : #F5EDE3;
 
 
 
 //General
 html, body{
-	font-family:$fnt-family;
-	font-size: 16px;
-	color:$fnt-clr;
-	height:100%;
+    font-family:$fnt-family;
+    font-size: 16px;
+    color:$fnt-clr;
+    height:100%;
 }
 body{
-	background:$bg-clr;
-	min-height:100%;
+    background:$bg-clr;
+    min-height:100%;
 }
 
 button{
-	display:inline-block;
-	border:1px solid darken($bg-clr,35%);
-	font-size:38px;
-	font-size:3vmax;
-	cursor:pointer;
-	font-family:$fnt-family;
-	background-color:darken($bg-clr,25%);
-	color:$black-clr;
-	-webkit-border-radius:5px;
-	border-radius:5px;
-	-webkit-box-shadow: inset 0 -4px darken($bg-clr,35%);
-  	box-shadow: inset 0 -4px darken($bg-clr,35%);
-	@include transitions(all 0.3s);
-	&:active{
-		-webkit-box-shadow: inset 0 -1px darken($bg-clr,35%);
-  		box-shadow: inset 0 -1px darken($bg-clr,35%);
-		-webkit-transform: translate(0, 3px);
-  		transform: translate(0, 3px);
-	}
+    display:inline-block;
+    border:1px solid darken($bg-clr,35%);
+    font-size:38px;
+    font-size:3vmax;
+    cursor:pointer;
+    font-family:$fnt-family;
+    background-color:darken($bg-clr,25%);
+    color:$black-clr;
+    -webkit-border-radius:5px;
+    border-radius:5px;
+    -webkit-box-shadow: inset 0 -4px darken($bg-clr,35%);
+    box-shadow: inset 0 -4px darken($bg-clr,35%);
+    @include transitions(all 0.3s);
+    &:active{
+        -webkit-box-shadow: inset 0 -1px darken($bg-clr,35%);
+        box-shadow: inset 0 -1px darken($bg-clr,35%);
+        -webkit-transform: translate(0, 3px);
+        transform: translate(0, 3px);
+    }
 
-	&[disabled]{
-		-webkit-opacity:0.5;
-		opacity:0.5;
-		cursor: default;
-		-webkit-box-shadow: inset 0 -4px darken($bg-clr,25%);
-  		box-shadow: inset 0 -4px darken($bg-clr,25%);
-		&:active{
-			-webkit-transform: translate(0, 0);
-  			transform: translate(0, 0);
-		}
-	}
+    &[disabled]{
+        -webkit-opacity:0.5;
+        opacity:0.5;
+        cursor: default;
+        -webkit-box-shadow: inset 0 -4px darken($bg-clr,25%);
+        box-shadow: inset 0 -4px darken($bg-clr,25%);
+        &:active{
+            -webkit-transform: translate(0, 0);
+            transform: translate(0, 0);
+        }
+    }
 
-	span{
-		padding:12px 16px;
-		padding:2vh 4vw;
-		display:block;
-	}
+    span{
+        padding:12px 16px;
+        padding:2vh 4vw;
+        display:block;
+    }
 }
 
 h1{
-	font-size:48px;
-	font-size:6vw;
-	color:$fnt-heading;
-	text-align:center;
+    font-size:48px;
+    font-size:6vw;
+    color:$fnt-heading;
+    text-align:center;
 }
 
 .inputContainer{
-	text-align:center;
-	padding:25px 0;
-	padding:2vh 0;
-	@include transitions(all 1s);
+    text-align:center;
+    padding:25px 0;
+    padding:2vh 0;
+    @include transitions(all 1s);
 }
 .heading{
-	padding:25px 0;
-	padding:2vh 0;
-	@include transitions(all 1s);
+    padding:25px 0;
+    padding:2vh 0;
+    @include transitions(all 1s);
 }
 
 .listContainer{
-	@include transitions(all 1s);
-	ul{
-		text-align:center;
-		font-size:30px;
-		font-size:3vh;
-		position:relative;
-	}
-	.item{
-		display:inline-block;
-		width:50%;
-		@include mediaquery(sm){
-			width:33.3333333%;
-		}
-		@include mediaquery(md){
-			width:25%;
-		}
-		@include mediaquery(lg){
-			width:20%;
-		}
-		&.selected{
-			span{
-				background-color:$item-bgColor--selected;
-				color:$fnt-clr--selected;
-				-webkit-box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
-  				box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
-			}
-		}
-		span{
-			display: block;
-			background-color:$item-bgColor;
-			color:$secondary-clr;
-			border:1px solid $item-borderColor;
-			padding:2vh 0;
-			-webkit-box-shadow: inset -3px -3px darken($item-bgColor,15%);
-  			box-shadow: inset -3px -3px darken($item-bgColor,15%);
-  			white-space: nowrap;
-			overflow: hidden;
-			text-overflow: ellipsis;
-			@include transitions ((padding 0.3s));
-			@include mediaquery(md){
-				padding:4vh 0;
-			}
-		}
-	}
+    @include transitions(all 1s);
+    ul{
+        text-align:center;
+        font-size:30px;
+        font-size:3vh;
+        position:relative;
+    }
+    .item{
+        display:inline-block;
+        width:50%;
+        @include mediaquery(sm){
+            width:33.3333333%;
+        }
+        @include mediaquery(md){
+            width:25%;
+        }
+        @include mediaquery(lg){
+            width:20%;
+        }
+        &.selected{
+            span{
+                background-color:$item-bgColor--selected;
+                color:$fnt-clr--selected;
+                -webkit-box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
+                box-shadow: inset -3px -3px lighten($item-bgColor--selected,15%);
+            }
+        }
+        span{
+            display: block;
+            background-color:$item-bgColor;
+            color:$secondary-clr;
+            border:1px solid $item-borderColor;
+            padding:2vh 0;
+            -webkit-box-shadow: inset -3px -3px darken($item-bgColor,15%);
+            box-shadow: inset -3px -3px darken($item-bgColor,15%);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            @include transitions ((padding 0.3s));
+            @include mediaquery(md){
+                padding:4vh 0;
+            }
+        }
+    }
 }
 
 //Loader
 .loader{
-	display:none;
-	background:rgba($white-clr,0.5);
-	position:fixed;
-	top:0;
-	left:0;
-	width:100%;
-	height:100%;
-	&:before{
-		content:"";
-		position:absolute;
-		left:50%;
-		top:50%;
-		width:4rem;
-		height:4rem;
-		border:10px solid lighten($fnt-heading,15%);
-		border-top-color: $fnt-heading;
-		-webkit-border-radius:100%;
-		border-radius:100%;
-		-webkit-animation: animate-loader 1s infinite alternate ease-out;
-		animation: animate-loader 1s infinite alternate ease-out;
-	}
-	&:after{
-		content:"";
-		position:absolute;
-		left:50%;
-		top:50%;
-		width:1.5rem;
-		height:1.5rem;
-		border:5px solid $fnt-heading;
-		border-top-color: lighten($fnt-heading,15%);
-		-webkit-border-radius:100%;
-		border-radius:100%;
-		-webkit-animation: animate-loader 1s infinite alternate-reverse ease-in;
-		animation: animate-loader 1s infinite alternate-reverse ease-in;
-	}
+    display:none;
+    background:rgba($white-clr,0.5);
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    &:before{
+        content:"";
+        position:absolute;
+        left:50%;
+        top:50%;
+        width:4rem;
+        height:4rem;
+        border:10px solid lighten($fnt-heading,15%);
+        border-top-color: $fnt-heading;
+        -webkit-border-radius:100%;
+        border-radius:100%;
+        -webkit-animation: animate-loader 1s infinite alternate ease-out;
+        animation: animate-loader 1s infinite alternate ease-out;
+    }
+    &:after{
+        content:"";
+        position:absolute;
+        left:50%;
+        top:50%;
+        width:1.5rem;
+        height:1.5rem;
+        border:5px solid $fnt-heading;
+        border-top-color: lighten($fnt-heading,15%);
+        -webkit-border-radius:100%;
+        border-radius:100%;
+        -webkit-animation: animate-loader 1s infinite alternate-reverse ease-in;
+        animation: animate-loader 1s infinite alternate-reverse ease-in;
+    }
 }
 
 //Modes
 .start{
-	.heading,
-	.inputContainer{
-	}
+    .heading,
+    .inputContainer{
+    }
 }
 
 .disabled{
-	.inputContainer{
-		button{
-			cursor: wait;
-		}
-	}
+    .inputContainer{
+        button{
+            cursor: wait;
+        }
+    }
 }
 
 .loading{
-	overflow:hidden;
-	.heading{
-		-webkit-transform:translateY(-50%);
-		transform:translateY(-50%);
-		opacity:0;
-		-webkit-opacity:0;
-	}
-	.listContainer{
-		opacity:0;
-		-webkit-opacity:0;	
-	}
-	.inputContainer{
-		-webkit-transform:translateY(10%);
-		transform:translateY(10%);
-		opacity:0;
-		-webkit-opacity:0;
-	}
-	.loader{
-		display:block;
-	}
+    overflow:hidden;
+    .heading{
+        -webkit-transform:translateY(-50%);
+        transform:translateY(-50%);
+        opacity:0;
+        -webkit-opacity:0;
+    }
+    .listContainer{
+        opacity:0;
+        -webkit-opacity:0;  
+    }
+    .inputContainer{
+        -webkit-transform:translateY(10%);
+        transform:translateY(10%);
+        opacity:0;
+        -webkit-opacity:0;
+    }
+    .loader{
+        display:block;
+    }
 }
