@@ -1,6 +1,6 @@
 function LunchTime(newSettings) {
 
-    this.version    = "1.0",
+    this.version    = "1.1",
     this.settings   = {
                         srcFile         : "https://js-whatsforlunch.firebaseio.com/",   //Default JSON string
                         items           : ["Item 1", "Item 2", "Item 3", "Item 4"],
@@ -20,7 +20,8 @@ function LunchTime(newSettings) {
                                             selection   : "audio/beep.mp3",             //Selection sound
                                             selected    : "audio/tadaa.mp3"             //Chosen item sound
                                           },
-                        randomise       : false                                         //Randomise list
+                        randomise       : false,                                        //Randomise list
+                        allowExlcusions : false
                     }
     //Local
     var mode            = ["start","disabled","loading"],   
@@ -29,15 +30,18 @@ function LunchTime(newSettings) {
         intIndex        = 0, 
         intTimer        = this.settings.timer.interval,
         intThreshold    = this.settings.timer.threshold[intIndex],
-        prevRand        = 0,
+        prevRand        = -1,
         sound           = null,
         arrAudio        = {},
-        _this           = this,
+        _this           = this;
         fbRef           = new Firebase(this.settings.srcFile);
 
     this.init  = function(arr){
 
         this.setMode(mode[2]); 
+
+        //TODO: Offline mode or fallback
+        //add text Offline mode
 
         //Firebase API
         fbRef.on("value", function(snapshot) {
@@ -45,12 +49,12 @@ function LunchTime(newSettings) {
                 container   = document.getElementById(_this.settings.listContainer.idName),
                 body        = document.getElementsByTagName("body")[0],
                 isStart     = ((body.className).indexOf(mode[0])>=0)?true:false,
-                isLoading   = ((body.className).indexOf(mode[2])>=0)?true:false,
+                isLoading   = ((body.className).indexOf(mode[2])>=0)?true:false;
                 fbItems     = snapshot.val();
 
             if (isStart || isLoading) {
-                for (var prop in fbItems) {
-                    arr.push(fbItems[prop]);
+               for (var prop in fbItems) {
+                   arr.push(fbItems[prop]);
                 }
                 _this.settings.items = arr;
 
@@ -103,9 +107,10 @@ function LunchTime(newSettings) {
                 list            = listContainer.getElementsByTagName("li"),
                 className;
 
+                console.log(rand);
             for (var i=0; i < list.length; i++){
                 className =  (rand === i)? classNormal.concat(" ", classSelected):classNormal;
-                list[i].className=className;    
+                list[i].className = className;    
             };
 
             intTimeCount += intTimer;
@@ -128,17 +133,8 @@ function LunchTime(newSettings) {
     }
 
     this.getRandomiseIndex = function(){
-        var rand = Math.floor(Math.random() * (_this.settings.items.length - 1  + 1));
-
-        while (prevRand == rand){
-            rand = Math.floor(Math.random() * (_this.settings.items.length - 1  + 1));
-            if (rand !==prevRand){
-                prevRand  = rand;
-                break;
-            }
-        }
-
-        return rand;
+        return Math.floor(Math.random() * (_this.settings.items.length - 1  + 1));
+        //return rand;
     } 
 
     this.getRandomiseList = function(arr){

@@ -163,6 +163,7 @@ h1 {
 .listContainer .item {
   display: inline-block;
   width: 50%;
+  cursor: pointer;
 }
 @media all and (min-width: 480px) {
   .listContainer .item {
@@ -184,6 +185,9 @@ h1 {
   color: #F5EDE3;
   -webkit-box-shadow: inset 3px 3px 0 0 #1865ca;
   box-shadow: inset 3px 3px 0 0 #1865ca;
+}
+.listContainer .item.excluded {
+  cursor: default;
 }
 .listContainer .item span {
   display: block;

@@ -116,6 +116,7 @@ h1{
     .item{
         display:inline-block;
         width:50%;
+        cursor:pointer;
         @include mediaquery(sm){
             width:33.3333333%;
         }
@@ -132,6 +133,9 @@ h1{
                 -webkit-box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--selected,15%);
                 box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--selected,15%);
             }
+        }
+        &.excluded{
+            cursor:default;
         }
         span{
             display: block;
