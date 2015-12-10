@@ -33,6 +33,7 @@ You may overwrite settings by parsing:
 var settings = {
         allowAudio  : true,
         randomise   : true,
+        defaultLocation   : "newlocation",
         timer       : {
                         interval: 200
                       }
@@ -45,9 +46,11 @@ var settings = {
 | Attributes | Object attribtues | Values | Default
 |:---|:---|:---|:---|
 | fileSrc|  - | Source of the JSON string (in http(s)) | _https://js-whatsforlunch.firebaseio.com/_ 
+| defaultLocation | - | Default location to load the venues | _mulgrave_
 | listContainer | idName| lunch list container ID | _lunchList_
 | listContainer | classNormal| List item class | _item_
 | listContainer | classSelected| Selected list item class | _selected_ 
+| listContainer | classDisabled| Disabled list item class | _disabled_ 
 | timer | interval | Delay between each random (miliseconds) | _150_
 | timer | increment | Increment for each threshold (miliseconds) | _250_
 | timer | threshold | Delay before increment (miliseconds in an array)| _[3000,3000,3000]_
