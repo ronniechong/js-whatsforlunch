@@ -9,16 +9,21 @@ html
         .container#container
             .heading
                 h1 So, what's for lunch today?
+                .selectContainer
+                    label(for="location") Location
+                    select#location(name="location")
             .listContainer#lunchList
             .inputContainer
                 button#button.btnSubmit(name="submit") 
                     span Decide for me!
         .loader
-        script(src="https://cdn.firebase.com/js/client/2.2.2/firebase.js")
+        script(src="https://cdn.firebase.com/js/client/2.3.1/firebase.js")
+        script(type="text/javascript" src="js/lodash.js")
         script(type="text/javascript" src="js/main.js")
         script(type="text/javascript").
             var settings = {
                     allowAudio  : true,
-                    randomise   : true
+                    randomise   : true,
+                    defaultLocation: "richmond"
                 },
                 lunchTime = new LunchTime(settings);

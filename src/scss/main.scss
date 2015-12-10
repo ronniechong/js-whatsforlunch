@@ -16,6 +16,7 @@ $black-clr              : #000000;
 $item-borderColor       : #E1D4C0;
 $item-bgColor           : $primary-clr;
 $item-bgColor--selected : $secondary-clr;
+$item-bgColor--disabled : mix($white-clr, $black-clr, 65%);
 
 $fnt-clr                : #FF6600;
 $fnt-clr--selected      : #F5EDE3;
@@ -51,7 +52,7 @@ button{
     border-radius:5px;
     -webkit-box-shadow: inset 0 -4px darken($bg-clr,35%);
     box-shadow: inset 0 -4px darken($bg-clr,35%);
-    @include transitions(all 0.3s);
+    @include transitions(all 0.3s ease-out);
     &:hover,
     &:focus{
         background-color:darken($bg-clr,30%);
@@ -91,22 +92,44 @@ h1{
     font-size:6vw;
     color:$fnt-heading;
     text-align:center;
+    margin-bottom: 20px;
+}
+
+.selectContainer{
+    text-align: center;
+    padding:0 20px;
+}
+
+label{
+  color:$secondary-clr;
+}
+
+select{
+    border:1px solid $primary-clr;
+    font-size:18px;
+    height: 38px;
+    padding: 6px 12px;
+    line-height: 1.42857143;
+    border-radius:0;
+    display:inline-block;
+
+  text-transform: capitalize;
 }
 
 .inputContainer{
     text-align:center;
     padding:25px 0;
     padding:2vh 0;
-    @include transitions(all 1s);
+    @include transitions(all 1s ease-out);
 }
 .heading{
     padding:25px 0;
     padding:2vh 0;
-    @include transitions(all 1s);
+    @include transitions(all 1s ease-out);
 }
 
 .listContainer{
-    @include transitions(all 1s);
+    @include transitions(all 1s ease-out);
     ul{
         text-align:center;
         font-size:30px;
@@ -125,15 +148,55 @@ h1{
         @include mediaquery(lg){
             width:20%;
         }
+        //randomised highlight
         &.selected{
             span{
+                @include transitions(all 0.5s ease-out);
                 background-color:$item-bgColor--selected;
                 color:$fnt-clr--selected;
                 -webkit-box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--selected,15%);
                 box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--selected,15%);
             }
         }
+      //toggle disable
+        &.disabled{
+          span{
+            @include transitions(all 0.3s ease-out);
+            background-color:$item-bgColor--disabled;
+            color:darken($item-bgColor--disabled,25%);
+            -webkit-box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--disabled,15%);
+            box-shadow: inset 3px 3px 0 0 lighten($item-bgColor--disabled,15%);
+
+            &:before,
+            &:after{
+              @include transitions(all 0.3s ease-out);
+              opacity:1;
+              border-color:lighten($item-bgColor--disabled,15%);
+
+            }
+            &:before{
+              -webkit-transform: translate(-50%, -50%) rotate(195deg) scale(1);
+              transform: translate(-50%, -50%) rotate(195deg) scale(1);
+
+            }
+            &:after{
+              -webkit-transform: translate(-50%, -50%) rotate(-195deg) scale(1);
+              transform: translate(-50%, -50%) rotate(-195deg) scale(1);
+            }
+          }
+        }
+
+        a {
+            display: block;
+            &:active {
+                span {
+                    -webkit-transform: scale(0.95);
+                    transform: scale(0.95);
+                }
+            }
+        }
         span{
+            position:relative;
             display: block;
             background-color:$item-bgColor;
             color:$secondary-clr;
@@ -144,10 +207,25 @@ h1{
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            @include transitions ((padding 0.3s));
+            cursor:pointer;
+            @include transitions ((padding 0.3s ease-out,transform 0.15s ease-out));
             @include mediaquery(md){
                 padding:4vh 0;
             }
+            &:before,
+            &:after{
+              @include transitions(all 0.5s ease-out);
+              content:"";
+              position:absolute;
+              width:100%;
+              opacity:0;
+              -webkit-transform: translate(-50%, -50%);
+              transform: translate(-50%, -50%);
+              left:50%;
+              border-top:0.5vh solid rgba(darken($item-bgColor,15%), 0.5);
+              top:50%;
+            }
+
         }
     }
 }

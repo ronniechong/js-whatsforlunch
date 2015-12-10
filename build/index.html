@@ -10,6 +10,10 @@
     <div id="container" class="container">
       <div class="heading">
         <h1>So, what's for lunch today?</h1>
+        <div class="selectContainer">
+          <label for="location">Location</label>
+          <select id="location" name="location"></select>
+        </div>
       </div>
       <div id="lunchList" class="listContainer"></div>
       <div class="inputContainer">
@@ -17,12 +21,14 @@
       </div>
     </div>
     <div class="loader"></div>
-    <script src="https://cdn.firebase.com/js/client/2.2.2/firebase.js"></script>
+    <script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
+    <script type="text/javascript" src="js/lodash.js"></script>
     <script type="text/javascript" src="js/main.js"></script>
     <script type="text/javascript">
       var settings = {
               allowAudio  : true,
-              randomise   : true
+              randomise   : true,
+              defaultLocation: "richmond"
           },
           lunchTime = new LunchTime(settings);
     </script>
