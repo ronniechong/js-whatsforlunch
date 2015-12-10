@@ -1,9 +1,11 @@
 # js-whatsforlunch
-Version 1.0
+Version 1.1
 
 This JS web app is to help me (and my team) to decide where to head off for lunch by randomly choosing one of the regular venues.
 
 The list of venue is retrieved using Firebase API
+
+Venues can be disabled by toggling the item.
 
 ## Instructions
 
