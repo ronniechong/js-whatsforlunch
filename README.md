@@ -65,9 +65,18 @@ var settings = {
 The JSON string should be just a simple list
 ```
 {
-    "item1" : " Cafe A",
-    "item2" : " Cafe B",
-    "item3" : " Cafe C"
+	"location1":{
+		"item1" : " Cafe A",
+	    "item2" : " Cafe B",
+	    "item3" : " Cafe C"
+	},
+		"location2":{
+		"item1" : " Cafe X",
+	    "item2" : " Cafe Y",
+	    "item3" : " Cafe Z"
+	}
+
+    
 }
 ```
 
@@ -75,4 +84,3 @@ The JSON string should be just a simple list
 - Automate Firebase installation instead of manual script insertion
 - Fix Safari and iOS audio play
 - Ogg audio support
-- Allow Wildcards
