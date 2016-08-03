@@ -1,5 +1,5 @@
 # js-whatsforlunch
-Version 1.1
+Version 2.0
 
 This JS web app is to help me (and my team) to decide where to head off for lunch by randomly choosing one of the regular venues.
 
@@ -47,7 +47,6 @@ var settings = {
 
 | Attributes | Object attribtues | Values | Default
 |:---|:---|:---|:---|
-| fileSrc|  - | Source of the JSON string (in http(s)) | _https://js-whatsforlunch.firebaseio.com/_ 
 | defaultLocation | - | Default location to load the venues | _mulgrave_
 | listContainer | idName| lunch list container ID | _lunchList_
 | listContainer | classNormal| List item class | _item_
@@ -84,3 +83,6 @@ The JSON string should be just a simple list
 - Automate Firebase installation instead of manual script insertion
 - Fix Safari and iOS audio play
 - Ogg audio support
+
+## History log
+v2.0 (3rd August 2016) - Massive fail. Upgraded Firebase API 2.0 to 3.0

@@ -243,7 +243,7 @@ select {
   background-color: #6699FF;
   color: #104386;
   border: 1px solid #E1D4C0;
-  padding: 2vh 0;
+  padding: 2vh .25em;
   -webkit-box-shadow: inset -3px -3px #1a66ff;
   box-shadow: inset -3px -3px #1a66ff;
   white-space: nowrap;
@@ -255,7 +255,7 @@ select {
 }
 @media all and (min-width: 768px) {
   .listContainer .item span {
-    padding: 4vh 0;
+    padding: 4vh .25em;
   }
 }
 .listContainer .item span:before, .listContainer .item span:after {

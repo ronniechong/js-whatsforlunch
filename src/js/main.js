@@ -1,9 +1,8 @@
 function LunchTime(newSettings) {
-
-    this.version    = "1.0";
+    
+  
+    this.version    = "2.0";
     this.settings   = {
-                        srcFile         : "https://js-whatsforlunch.firebaseio.com/",   //Default JSON string
-                        items           : ["Item 1", "Item 2", "Item 3", "Item 4"],
                         mainContainer   : "container",
                         selectContainer : "location",                                   //Select container ID
                         defaultLocation : "mulgrave",
@@ -25,6 +24,13 @@ function LunchTime(newSettings) {
                                           },
                         randomise       : false                                         //Randomise list
                     };
+    this.fbioConfig = {
+        apiKey: "AIzaSyCZfaiSTO_Uv3l0U2T6CwsXv7l72MRGr6E",
+        authDomain: "js-whatsforlunch.firebaseapp.com",
+        databaseURL: "https://js-whatsforlunch.firebaseio.com",
+        storageBucket: "js-whatsforlunch.appspot.com",
+    };
+    
     //Local
     var mode            = ["start","disabled","loading"],   
         intCounter      = 0, 
@@ -36,7 +42,7 @@ function LunchTime(newSettings) {
         sound           = null,
         arrAudio        = {},
         _this           = this,
-        fbRef           = new Firebase(this.settings.srcFile),
+        fbRef           = firebase,
         select          = document.getElementById(_this.settings.selectContainer),
         arrToggled      = [],
         chosenLocation  = '';
@@ -55,8 +61,11 @@ function LunchTime(newSettings) {
                 }
             }
         }
+        
+        fbRef.initializeApp(this.fbioConfig);
+
         //Populate location list
-        fbRef.on("value", function(snapshot){
+	    fbRef.database().ref().on('value', function(snapshot) {
             var fbItems     = snapshot.val();
 
             chosenLocation = _this.settings.defaultLocation.toLowerCase();
@@ -77,6 +86,7 @@ function LunchTime(newSettings) {
             _this.updateLunchVenue(chosenLocation);
         });
 
+
         //Init audio
         if (this.settings.allowAudio){
             for (var prop in this.settings.srcAudio) {
@@ -92,15 +102,14 @@ function LunchTime(newSettings) {
 
     this.updateLunchVenue = function(location){
         //Firebase API
-        fbRef.child(location).on("value", function(snapshot) {
+        var fbChild = fbRef.database().ref(location);
+	    fbRef.database().ref(location).on('value', function(snapshot) {
             var arr         = [],
                 container   = document.getElementById(_this.settings.listContainer.idName),
                 body        = document.getElementsByTagName("body")[0],
                 isStart     = ((body.className).indexOf(mode[0])>=0)?true:false,
                 isLoading   = ((body.className).indexOf(mode[2])>=0)?true:false,
                 fbItems     = snapshot.val();
-
-                container.addEventListener('click');
 
             if (isStart || isLoading) {
                 for (var prop in fbItems) {

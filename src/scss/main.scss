@@ -201,7 +201,7 @@ select{
             background-color:$item-bgColor;
             color:$secondary-clr;
             border:1px solid $item-borderColor;
-            padding:2vh 0;
+            padding:2vh .25em;
             -webkit-box-shadow: inset -3px -3px darken($item-bgColor,15%);
             box-shadow: inset -3px -3px darken($item-bgColor,15%);
             white-space: nowrap;
@@ -210,7 +210,7 @@ select{
             cursor:pointer;
             @include transitions ((padding 0.3s ease-out,transform 0.15s ease-out));
             @include mediaquery(md){
-                padding:4vh 0;
+                padding:4vh .25em;
             }
             &:before,
             &:after{

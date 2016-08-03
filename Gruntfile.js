@@ -35,6 +35,10 @@ module.exports = function(grunt){
 
 		uglify: {
 	      build: {
+					options:{
+						beautify:false,
+						mangle: true
+					},
 	        files: [{
 	            expand: true,
 	            cwd: 'src/js/',
